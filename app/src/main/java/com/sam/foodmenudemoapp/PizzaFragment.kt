@@ -7,65 +7,35 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.mvrx.*
 import com.sam.foodmenudemoapp.databinding.FragmentPizzaBinding
 import com.sam.foodmenudemoapp.model.MenuItem
 import com.sam.foodmenudemoapp.model.MenuItemCategory
-import com.sam.foodmenudemoapp.viewModel.FoodAppMainViewModel
 
-class PizzaFragment:BaseMvRxFragment() {
+class PizzaFragment:AbstractMenuItemFragment() {
 
-    private lateinit var menuItemAdapter: MenuItemAdapter
+    private lateinit var myViewBinding:FragmentPizzaBinding
 
-    private lateinit var pizzaViewBinding: FragmentPizzaBinding
-
-    private val foodAppMainViewModel: FoodAppMainViewModel by activityViewModel()
-
-    private var menuItemList:ArrayList<MenuItem> = ArrayList<MenuItem>()
-
-    override fun invalidate() {
-        withState(foodAppMainViewModel) { state ->
-            when (state.menuItems) {
-                is Loading -> {
-                    pizzaViewBinding.progressBar.visibility = View.VISIBLE
-                    pizzaViewBinding.pizzaRecyclerView.visibility = View.GONE
-                }
-                is Success -> {
-                    pizzaViewBinding.progressBar.visibility = View.GONE
-                    pizzaViewBinding.pizzaRecyclerView.visibility = View.VISIBLE
-                    menuItemAdapter.setMenuItems(state.menuItems.invoke().filter { it.itemCategory.name.contentEquals(MenuItemCategory.PIZZA.name) })
-                }
-                is Fail -> {
-                    Toast.makeText(requireContext(), "Failed to load all the menuItems", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+    override fun setUIForLoading() {
+        myViewBinding.progressBar.visibility = View.VISIBLE
+        myViewBinding.pizzaRecyclerView.visibility = View.GONE
     }
+
+    override fun setUIForSuccess() {
+        myViewBinding.progressBar.visibility = View.GONE
+        myViewBinding.pizzaRecyclerView.visibility = View.VISIBLE
+    }
+    override fun setAdapter(menuItemAdapter: MenuItemAdapter) {
+        myViewBinding.pizzaRecyclerView.adapter = menuItemAdapter
+    }
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        pizzaViewBinding = FragmentPizzaBinding.inflate(layoutInflater)
+        myViewBinding = FragmentPizzaBinding.inflate(layoutInflater)
+        myViewBinding.pizzaRecyclerView.setLayoutManager(LinearLayoutManager(this.activity))
         initView()
-        return pizzaViewBinding.root
+        return myViewBinding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
-
-    private fun initView() {
-
-        pizzaViewBinding.pizzaRecyclerView.setLayoutManager(LinearLayoutManager(this.activity))
-        menuItemAdapter = MenuItemAdapter(this.context!!)
-        pizzaViewBinding.pizzaRecyclerView.adapter = menuItemAdapter
-        foodAppMainViewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        })
-
-
-
-    }
-
 
 }
