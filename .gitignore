@@ -98,3 +98,4 @@ app/src/main/res/layout/content_scrolling.xml
 .gradle/6.5/executionHistory/executionHistory.bin
 *.lock
 *.bin
+*.ser
