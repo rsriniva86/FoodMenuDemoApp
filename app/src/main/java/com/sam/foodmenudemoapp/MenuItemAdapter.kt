@@ -4,20 +4,27 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sam.foodmenudemoapp.model.MenuItem
 import java.util.*
 
 
-class MenuItemAdapter( private val context: Context, menuItems: ArrayList<MenuItem>) :
+class MenuItemAdapter( private val context: Context) :
     RecyclerView.Adapter<MenuItemAdapter.MenuItemHolder?>() {
 
 
-    private val menuItems: ArrayList<MenuItem>
-    init {
-        this.menuItems = menuItems
+    private val menuItems = mutableListOf<MenuItem>()
+
+    fun setMenuItems(menuItems: List<MenuItem>) {
+        this.menuItems.clear()
+        this.menuItems.addAll(menuItems)
+        notifyDataSetChanged()
     }
+
+    override fun getItemCount()= menuItems.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuItemHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.item_card, parent, false)
@@ -25,25 +32,32 @@ class MenuItemAdapter( private val context: Context, menuItems: ArrayList<MenuIt
     }
 
     override fun onBindViewHolder(holder: MenuItemAdapter.MenuItemHolder, position: Int) {
-        val planet: MenuItem = menuItems[position]
-        holder.setDetails(planet)
+        val menuItem: MenuItem = menuItems[position]
+        holder.setDetails(holder,menuItem)
+
     }
 
-    override fun getItemCount(): Int {
-        return menuItems.size
-    }
 
     inner class MenuItemHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         private val txtName: TextView
         private val txtDescription: TextView
+        private val cardImageView:ImageView
         init {
             txtName = itemView.findViewById(R.id.txtName)
             txtDescription = itemView.findViewById(R.id.txtDescription)
+            cardImageView=itemView.findViewById(R.id.cardImageView)
         }
-        fun setDetails(menuItem: MenuItem) {
+        fun setDetails(holder: MenuItemAdapter.MenuItemHolder,menuItem: MenuItem) {
             txtName.setText(menuItem.itemName)
             txtDescription.text = menuItem.itemDescription
+
+            Glide
+                .with(holder.itemView)
+                .load(menuItem?.itemImageLocation)
+                .centerCrop()
+                .into(holder.cardImageView)
+
         }
 
     }

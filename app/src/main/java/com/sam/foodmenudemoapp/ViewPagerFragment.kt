@@ -28,17 +28,17 @@ class ViewPagerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val position = requireArguments().getInt(ARG_POSITION)
-        val onBoardingImages = getOnBoardAssetsLocation()
+        val restuarantImages = getRestaurantImages()
         with(binding) {
-            onBoardingImage.setImageResource(onBoardingImages[position])
+            restuarantImage.setImageResource(restuarantImages[position])
         }
     }
 
-    private fun getOnBoardAssetsLocation(): List<Int> {
-        val onBoardAssets: MutableList<Int> = ArrayList()
-        onBoardAssets.add(R.raw.on_board_img1_land)
-        onBoardAssets.add(R.raw.on_board_img2_land)
-        onBoardAssets.add(R.raw.on_board_img3_land)
-        return onBoardAssets
+    private fun getRestaurantImages(): List<Int> {
+        val restaurantAssets: MutableList<Int> = ArrayList()
+        restaurantAssets.add(R.raw.image1)
+        restaurantAssets.add(R.raw.image2)
+        restaurantAssets.add(R.raw.image3)
+        return restaurantAssets
     }
 }

@@ -39,7 +39,7 @@
             <!-- markers -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/on_boarding_info"
-                android:layout_marginTop="500dp"
+                android:layout_marginTop="250dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"

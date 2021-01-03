@@ -1,32 +1,35 @@
+package com.sam.foodmenudemoapp.viewModel
 import androidx.lifecycle.MutableLiveData
-import com.airbnb.mvrx.BaseMvRxViewModel
-import com.airbnb.mvrx.MavericksViewModelFactory
+import com.airbnb.mvrx.*
 import com.sam.foodmenudemoapp.application.FoodApp
 import com.sam.foodmenudemoapp.model.FoodAppMainState
-import com.sam.foodmenudemoapp.model.MenuItem
+import com.sam.foodmenudemoapp.model.MenuItemRepository
 
 
-class FoodAppMainViewModel (initialState: FoodAppMainState, private val menuItem: MenuItem ): BaseMvRxViewModel<FoodAppMainState>(initialState){
+class FoodAppMainViewModel (
+    initialState: FoodAppMainState,
+    private val menuItemRepository: MenuItemRepository
+): BaseMvRxViewModel<FoodAppMainState>(initialState,debugMode = true){
+    val errorMessage = MutableLiveData<String>()
+
     init {
         setState {
-            copy(movies = Loading())
+            copy(menuItems = Loading())
         }
-        watchlistRepository.getWatchlistedMovies()
+        menuItemRepository.getAllMenuItems()
             .execute {
-                copy(movies = it)
+                copy(menuItems = it)
             }
     }
-    companion object : MavericksViewModelFactory<FoodAppMainViewModel, FoodAppMainState> {
 
-        val errorMessage = MutableLiveData<String>()
-
-
-
+    companion object : MvRxViewModelFactory<FoodAppMainViewModel, FoodAppMainState> {
         override fun create(viewModelContext: ViewModelContext,
                             state: FoodAppMainState): FoodAppMainViewModel? {
-            val menuItem1 =
-                viewModelContext.app<FoodApp>()
-            return FoodAppMainViewModel(state, menuItem=menuItem1)
+            val menuItemRepository = viewModelContext.app<FoodApp>().menuItemRepository
+            return FoodAppMainViewModel(
+                state,
+                menuItemRepository
+            )
         }
     }
 
