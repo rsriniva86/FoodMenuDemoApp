@@ -2,14 +2,14 @@ package com.sam.foodmenudemoapp.viewModel
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.mvrx.*
 import com.sam.foodmenudemoapp.application.FoodApp
-import com.sam.foodmenudemoapp.model.FoodAppMainState
+import com.sam.foodmenudemoapp.model.MenuItemMainState
 import com.sam.foodmenudemoapp.model.MenuItemRepository
 
 
 class FoodAppMainViewModel (
-    initialState: FoodAppMainState,
+    initialState: MenuItemMainState,
     private val menuItemRepository: MenuItemRepository
-): BaseMvRxViewModel<FoodAppMainState>(initialState,debugMode = true){
+): BaseMvRxViewModel<MenuItemMainState>(initialState,debugMode = true){
     val errorMessage = MutableLiveData<String>()
 
     init {
@@ -22,9 +22,9 @@ class FoodAppMainViewModel (
             }
     }
 
-    companion object : MvRxViewModelFactory<FoodAppMainViewModel, FoodAppMainState> {
+    companion object : MvRxViewModelFactory<FoodAppMainViewModel, MenuItemMainState> {
         override fun create(viewModelContext: ViewModelContext,
-                            state: FoodAppMainState): FoodAppMainViewModel? {
+                            state: MenuItemMainState): FoodAppMainViewModel? {
             val menuItemRepository = viewModelContext.app<FoodApp>().menuItemRepository
             return FoodAppMainViewModel(
                 state,

@@ -1,4 +1,4 @@
-package com.sam.foodmenudemoapp
+package com.sam.foodmenudemoapp.view
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,10 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.tabs.TabLayout
+import com.sam.foodmenudemoapp.R
 import com.sam.foodmenudemoapp.databinding.ActivityScrollingBinding
 import kotlinx.android.synthetic.main.content_scrolling.*
 
-class FoodAppMainActivity : AppCompatActivity() {
+class MenuItemActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityScrollingBinding
 
@@ -32,8 +33,13 @@ class FoodAppMainActivity : AppCompatActivity() {
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
 
         val numberOfScreens = resources.getStringArray(R.array.on_boarding_titles).size
-        val viewPagerAdapter = ViewPagerFragmentAdapter(this, numberOfScreens)
-        val menuViewPagerAdapter=ViewPagerFragmentAdapter(this,3)
+        val viewPagerAdapter =
+            TopViewPagerFragmentAdapter(
+                this,
+                numberOfScreens
+            )
+        val menuViewPagerAdapter=
+            TopViewPagerFragmentAdapter(this, 3)
         with(binding){
             onBoardingMarkerContainer.makeStatusBarTransparent()
             pager.adapter = viewPagerAdapter
@@ -47,7 +53,10 @@ class FoodAppMainActivity : AppCompatActivity() {
             tabGravity=TabLayout.GRAVITY_FILL
         }
 
-        val menuTabAdapter = MenuTabAdapter(this, menuTabLayout!!.tabCount)
+        val menuTabAdapter = MenuTabAdapter(
+            this,
+            menuTabLayout!!.tabCount
+        )
         menuViewPager!!.adapter = menuTabAdapter
 
         menuViewPager!!.registerOnPageChangeCallback(menuViewPagerChangeCallback)

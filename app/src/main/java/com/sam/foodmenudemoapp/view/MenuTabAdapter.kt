@@ -1,4 +1,4 @@
-package com.sam.foodmenudemoapp
+package com.sam.foodmenudemoapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

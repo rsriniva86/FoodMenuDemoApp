@@ -1,17 +1,15 @@
-package com.sam.foodmenudemoapp
+package com.sam.foodmenudemoapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sam.foodmenudemoapp.databinding.FragmentPizzaBinding
 import com.sam.foodmenudemoapp.model.MenuItem
 import com.sam.foodmenudemoapp.model.MenuItemCategory
 
-class PizzaFragment:AbstractMenuItemFragment() {
+class PizzaFragment: AbstractMenuItemFragment() {
 
     private lateinit var myViewBinding:FragmentPizzaBinding
 

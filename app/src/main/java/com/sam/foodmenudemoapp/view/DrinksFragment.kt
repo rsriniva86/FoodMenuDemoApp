@@ -1,17 +1,15 @@
-package com.sam.foodmenudemoapp
+package com.sam.foodmenudemoapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sam.foodmenudemoapp.databinding.FragmentDrinksBinding
-import com.sam.foodmenudemoapp.databinding.FragmentSushiBinding
 import com.sam.foodmenudemoapp.model.MenuItem
 import com.sam.foodmenudemoapp.model.MenuItemCategory
 
-class DrinksFragment:AbstractMenuItemFragment() {
+class DrinksFragment: AbstractMenuItemFragment() {
     private lateinit var myViewBinding: FragmentDrinksBinding
 
     override fun setUIForLoading() {

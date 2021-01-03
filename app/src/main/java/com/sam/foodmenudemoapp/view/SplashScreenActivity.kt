@@ -28,7 +28,7 @@
  * THE SOFTWARE.
  */
 
-package com.sam.foodmenudemoapp
+package com.sam.foodmenudemoapp.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -55,10 +55,12 @@ class SplashScreenActivity : AppCompatActivity() {
 
     Handler().postDelayed({
 
-      startActivity(Intent(this, FoodAppMainActivity::class.java))
+      startActivity(Intent(this, MenuItemActivity::class.java))
       overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
       finish()
 
-    }, SPLASH_SCREEN_DURATION)
+    },
+      SPLASH_SCREEN_DURATION
+    )
   }
 }

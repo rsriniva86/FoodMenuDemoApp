@@ -1,10 +1,9 @@
-package com.sam.foodmenudemoapp
+package com.sam.foodmenudemoapp.view
 
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.airbnb.mvrx.*
 import com.sam.foodmenudemoapp.model.MenuItem
-import com.sam.foodmenudemoapp.model.MenuItemCategory
 import com.sam.foodmenudemoapp.viewModel.FoodAppMainViewModel
 
 abstract class AbstractMenuItemFragment :BaseMvRxFragment() {
@@ -36,7 +35,8 @@ abstract class AbstractMenuItemFragment :BaseMvRxFragment() {
     abstract fun setAdapter(menuItemAdapter: MenuItemAdapter)
 
     open protected fun initView(){
-        menuItemAdapter = MenuItemAdapter(this.context!!)
+        menuItemAdapter =
+            MenuItemAdapter(this.context!!)
         foodAppMainViewModel.errorMessage.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })

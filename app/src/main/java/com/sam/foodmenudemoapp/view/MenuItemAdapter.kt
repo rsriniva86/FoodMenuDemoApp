@@ -1,4 +1,4 @@
-package com.sam.foodmenudemoapp
+package com.sam.foodmenudemoapp.view
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.sam.foodmenudemoapp.R
 import com.sam.foodmenudemoapp.model.MenuItem
-import java.util.*
 
 
 class MenuItemAdapter( private val context: Context) :
@@ -31,7 +31,7 @@ class MenuItemAdapter( private val context: Context) :
         return MenuItemHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MenuItemAdapter.MenuItemHolder, position: Int) {
+    override fun onBindViewHolder(holder: MenuItemHolder, position: Int) {
         val menuItem: MenuItem = menuItems[position]
         holder.setDetails(holder,menuItem)
 
@@ -48,7 +48,7 @@ class MenuItemAdapter( private val context: Context) :
             txtDescription = itemView.findViewById(R.id.txtDescription)
             cardImageView=itemView.findViewById(R.id.cardImageView)
         }
-        fun setDetails(holder: MenuItemAdapter.MenuItemHolder,menuItem: MenuItem) {
+        fun setDetails(holder: MenuItemHolder, menuItem: MenuItem) {
             txtName.setText(menuItem.itemName)
             txtDescription.text = menuItem.itemDescription
 

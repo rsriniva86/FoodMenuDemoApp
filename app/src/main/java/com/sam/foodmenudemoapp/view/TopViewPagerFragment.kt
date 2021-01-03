@@ -1,4 +1,4 @@
-package com.sam.foodmenudemoapp
+package com.sam.foodmenudemoapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.sam.foodmenudemoapp.R
 import com.sam.foodmenudemoapp.databinding.FragmentViewpagerBinding
 
-class ViewPagerFragment : Fragment() {
+class TopViewPagerFragment : Fragment() {
 
     companion object {
         private const val ARG_POSITION = "ARG_POSITION"
 
-        fun getInstance(position: Int) = ViewPagerFragment().apply {
+        fun getInstance(position: Int) = TopViewPagerFragment()
+            .apply {
             arguments = bundleOf(ARG_POSITION to position)
         }
     }
