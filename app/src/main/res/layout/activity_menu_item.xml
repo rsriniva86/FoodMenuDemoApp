@@ -80,6 +80,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include android:id="@+id/main_content"
-        layout="@layout/content_scrolling" />
+        layout="@layout/activity_main_content_menu_item" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

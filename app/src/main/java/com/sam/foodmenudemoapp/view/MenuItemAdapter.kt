@@ -27,7 +27,7 @@ class MenuItemAdapter( private val context: Context) :
     override fun getItemCount()= menuItems.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuItemHolder {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.item_card, parent, false)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.menu_item_card, parent, false)
         return MenuItemHolder(view)
     }
 
