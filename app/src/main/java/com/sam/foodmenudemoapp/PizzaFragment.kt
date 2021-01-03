@@ -24,11 +24,14 @@ class PizzaFragment:AbstractMenuItemFragment() {
         myViewBinding.progressBar.visibility = View.GONE
         myViewBinding.pizzaRecyclerView.visibility = View.VISIBLE
     }
+
+    override fun filterCondition(menuItem: MenuItem): Boolean {
+        return menuItem.itemCategory.name.contentEquals(MenuItemCategory.PIZZA.name)
+    }
+
     override fun setAdapter(menuItemAdapter: MenuItemAdapter) {
         myViewBinding.pizzaRecyclerView.adapter = menuItemAdapter
     }
-
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

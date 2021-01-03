@@ -20,7 +20,7 @@ abstract class AbstractMenuItemFragment :BaseMvRxFragment() {
                 is Success -> {
                     setUIForSuccess()
                     menuItemAdapter.setMenuItems(state.menuItems.invoke().filter {
-                        it.itemCategory.name.contentEquals(MenuItemCategory.PIZZA.name)
+                        filterCondition(it)
                     })
 
                 }
@@ -32,6 +32,7 @@ abstract class AbstractMenuItemFragment :BaseMvRxFragment() {
     }
     abstract fun setUIForLoading()
     abstract fun setUIForSuccess()
+    abstract fun filterCondition(menuItem:MenuItem): Boolean
     abstract fun setAdapter(menuItemAdapter: MenuItemAdapter)
 
     open protected fun initView(){
