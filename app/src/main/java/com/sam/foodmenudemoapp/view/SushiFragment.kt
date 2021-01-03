@@ -30,10 +30,13 @@ class SushiFragment: AbstractMenuItemFragment() {
         myViewBinding = FragmentSushiBinding.inflate(layoutInflater)
         myViewBinding.sushiRecyclerView.setLayoutManager(LinearLayoutManager(this.activity))
         initView()
+
         return myViewBinding.root
     }
     override fun filterCondition(menuItem: MenuItem): Boolean {
         return menuItem.itemCategory.name.contentEquals(MenuItemCategory.SUSHI.name)
     }
+
+
 
 }
