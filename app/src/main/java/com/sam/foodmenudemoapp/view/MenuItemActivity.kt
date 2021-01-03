@@ -9,19 +9,19 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.tabs.TabLayout
 import com.sam.foodmenudemoapp.R
-import com.sam.foodmenudemoapp.databinding.ActivityScrollingBinding
-import kotlinx.android.synthetic.main.content_scrolling.*
+import com.sam.foodmenudemoapp.databinding.ActivityMenuItemBinding
+
 
 class MenuItemActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityScrollingBinding
+    private lateinit var binding: ActivityMenuItemBinding
 
     var menuTabLayout: TabLayout? = null
     var menuViewPagerView: ViewPager2? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityScrollingBinding.inflate(layoutInflater)
+        binding = ActivityMenuItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         with(binding.mainContent){
@@ -57,13 +57,13 @@ class MenuItemActivity : AppCompatActivity() {
             this,
             menuTabLayout!!.tabCount
         )
-        menuViewPager!!.adapter = menuTabAdapter
+        menuViewPagerView!!.adapter = menuTabAdapter
 
-        menuViewPager!!.registerOnPageChangeCallback(menuViewPagerChangeCallback)
+        menuViewPagerView!!.registerOnPageChangeCallback(menuViewPagerChangeCallback)
 
         menuTabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                menuViewPager!!.currentItem = tab.position
+                menuViewPagerView!!.currentItem = tab.position
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {
 
@@ -105,7 +105,7 @@ class MenuItemActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateCircleMarker(binding: ActivityScrollingBinding, position: Int) {
+    private fun updateCircleMarker(binding: ActivityMenuItemBinding, position: Int) {
         when (position) {
             0 -> {
                 binding.onBoardingInitialCircle.background = getDrawable(R.drawable.bg_green_circle)

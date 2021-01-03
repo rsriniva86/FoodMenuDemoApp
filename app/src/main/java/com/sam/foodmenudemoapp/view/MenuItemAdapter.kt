@@ -54,7 +54,7 @@ class MenuItemAdapter( private val context: Context) :
 
             Glide
                 .with(holder.itemView)
-                .load(menuItem?.itemImageLocation)
+                .load(menuItem.itemImageLocation)
                 .centerCrop()
                 .into(holder.cardImageView)
 

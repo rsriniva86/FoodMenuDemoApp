@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.sam.foodmenudemoapp.R
-import com.sam.foodmenudemoapp.databinding.FragmentViewpagerBinding
+import com.sam.foodmenudemoapp.databinding.FragmentTopViewpagerBinding
 
 class TopViewPagerFragment : Fragment() {
 
@@ -20,11 +20,11 @@ class TopViewPagerFragment : Fragment() {
         }
     }
 
-    private lateinit var binding: FragmentViewpagerBinding
+    private lateinit var binding: FragmentTopViewpagerBinding
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = FragmentViewpagerBinding.inflate(inflater, container, false)
+        binding = FragmentTopViewpagerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
