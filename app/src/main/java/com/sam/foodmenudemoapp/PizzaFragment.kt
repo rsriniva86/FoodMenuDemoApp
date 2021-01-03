@@ -49,10 +49,6 @@ class PizzaFragment:BaseMvRxFragment() {
         return pizzaViewBinding.root
     }
 
-
-
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
